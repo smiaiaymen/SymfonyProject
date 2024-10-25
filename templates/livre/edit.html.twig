@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-header bg-dark text-white text-center rounded-top">
+                        <h2><i class="bi bi-book-fill"></i> Edit Book</h2>
+                    </div>
+                    <div class="card-body p-5">
+                        {# Display alerts if there are any flash messages #}
+                        {% for message in app.flashes('error') %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+                        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+                        {{ form_widget(form, {'attr': {'class': 'mb-4'}}) }}
+
+                        <div class="d-flex justify-content-between gap-3">
+                            <a href="{{ path('livre_index') }}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left-circle"></i> Back to List
+                            </a>
+                            <button class="btn btn-success">
+                                <i class="bi bi-save-fill"></i> Update
+                            </button>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Add New Book</h1>
+        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+        <div class="card shadow-sm border-light">
+            <div class="card-header bg-primary text-white text-center">
+                <h5 class="mb-0">Book Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    {{ form_label(form.title, null, {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Enter book title'}}) }}
+                    {{ form_errors(form.title) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.nbrpage, null, {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.nbrpage, {'attr': {'class': 'form-control', 'placeholder': 'Number of pages'}}) }}
+                    {{ form_errors(form.nbrpage) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.picture, null, {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.picture, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.picture) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.author, null, {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.author) }}
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a href="{{ path('livre_index') }}" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

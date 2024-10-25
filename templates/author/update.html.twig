@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h2>Edit Author</h2>
+                    </div>
+                    <div class="card-body p-5">
+                        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+                        {# Display form errors (if any) #}
+                        {% for message in app.flashes('error') %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+                        {{ form_widget(form, {'attr': {'class': 'mb-3'}}) }}
+
+                        <div class="d-flex justify-content-end gap-3">
+                            <a href="{{ path('app_authorList') }}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left-circle"></i> Back to List
+                            </a>
+                            <button class="btn btn-success">
+                                <i class="bi bi-pencil-fill"></i> Update
+                            </button>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

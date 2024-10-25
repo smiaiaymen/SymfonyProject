@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Books List</h1>
+
+        <div class="text-center mb-4">
+            {{ form_start(searchForm, {'attr': {'class': 'd-flex justify-content-center'}}) }}
+            {{ form_widget(searchForm.author) }}
+            <button class="btn btn-outline-primary ml-2" type="submit">
+                <i class="fas fa-search"></i> Search
+            </button>
+            {{ form_end(searchForm) }}
+        </div>
+
+        <div class="text-center mb-4">
+            <a href="{{ path('livre_new') }}" class="btn btn-primary">Add New Book</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Nbr Page</th>
+                    <th>Author</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for livre in livres %}
+                    <tr>
+                        <td>{{ livre.title }}</td>
+                        <td>{{ livre.nbrpage }}</td>
+                        <td>{{ livre.author.username }}</td>
+                        <td>
+                            <a href="{{ path('livre_show', {id: livre.id}) }}" class="btn btn-info btn-sm">View Details</a>
+                            <a href="{{ path('livre_edit', {id: livre.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form method="post" action="{{ path('livre_delete', {id: livre.id}) }}" style="display:inline;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ livre.id) }}">
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">No books found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

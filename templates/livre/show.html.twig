@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center">Book Details</h1>
+        <div class="card p-4 shadow-sm">
+            {# Display the book's picture if available #}
+            {% if livre.picture %}
+                <img src="{{ asset(livre.picture) }}" alt="{{ livre.title }}" class="img-fluid mb-3" style="max-width: 300px; height: auto;">
+            {% else %}
+                <img src="{{ asset('images/default-book-image.jpg') }}" alt="Default Image" class="img-fluid mb-3" style="max-width: 300px; height: auto;">
+            {% endif %}
+            <ul class="list-group">
+                <li class="list-group-item"><strong>ID:</strong> {{ livre.id }}</li>
+                <li class="list-group-item"><strong>Title:</strong> {{ livre.title }}</li>
+                <li class="list-group-item"><strong>Number of Pages:</strong> {{ livre.nbrpage }}</li>
+                <li class="list-group-item"><strong>Author:</strong> {{ livre.author.username }}</li>
+            </ul>
+            <a href="{{ path('livre_index') }}" class="btn btn-secondary mt-3">Back to List</a>
+        </div>
+    </div>
+{% endblock %}
